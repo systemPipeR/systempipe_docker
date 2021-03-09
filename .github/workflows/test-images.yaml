@@ -1,0 +1,32 @@
+name: test-images-install
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["weekly-systempipe-docker-devel-builder"]
+    types:
+      - completed
+  schedule:
+    - cron: '* */48 * * *'
+
+jobs:
+  test-built-containers:
+    strategy:
+      matrix:
+        container-tag: [devel]
+    runs-on: ubuntu-latest
+    container: systempipe/systempipe_docker:${{ matrix.container-tag }}
+
+    steps:
+      - name: report linux packages installed
+        run: 'apt list --installed'
+      - name: Canary package installs from default repositories
+        run: |
+          BiocManager::install(c('systemPipeR', 'systemPipeRdata', 'usethis'))
+        shell: Rscript {0}
+      - name: Check gert package and libgit2 functionality
+        # checks for presence of libgit2, also
+        run: |
+          BiocManager::install('gert')
+          require('gert')
+        shell: Rscript {0}
