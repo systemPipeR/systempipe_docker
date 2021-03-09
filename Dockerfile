@@ -14,6 +14,6 @@ LABEL name="systempipe/systempipe_docker" \
       url="https://github.com/systemPipeR/systempipe_docker" \
       vendor="systemPipe Project" \
       maintainer="danicassol@gmail.com" \
-      description="Bioconductor docker image containing the systemPipe Project" \
+      description="systemPipe Project docker image" \
       license="Artistic-2.0"
  
