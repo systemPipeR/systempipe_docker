@@ -10,14 +10,14 @@ git config user.email "danicassol@gmail.com"
 git config user.name "dcassol"
 
 ## Git commit
-git commit -am "Weekly version bump and rebuild of bioconductor_docker:devel"
+git commit -am "Weekly version bump and rebuild of bioconductor_docker:latest"
 
 ## docker build, login and push
-docker build -t systempipe/systempipe_docker:devel .
+docker build -t systempipe/systempipe_docker:latest .
 
 docker login --username=$DOCKER_HUB_USERNAME --password=$DOCKER_HUB_ACCESS_TOKEN
 
-docker push systempipe/systempipe_docker:devel
+docker push systempipe/systempipe_docker:latest
 
 ## Finish
 echo "Done"
