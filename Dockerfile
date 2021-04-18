@@ -8,6 +8,10 @@ RUN R -e 'BiocManager::install("BiocStyle")'
 RUN R -e 'BiocManager::install("tgirke/systemPipeR")'
 RUN R -e 'BiocManager::install("tgirke/systemPipeRdata")'
 
+WORKDIR /home/rstudio/SPRojects
+
+COPY --chown=rstudio:rstudio . /home/rstudio/SPRojects
+
 # Metadata
 LABEL name="systempipe/systempipe_docker" \
       version="systempipe_docker:latest" \
