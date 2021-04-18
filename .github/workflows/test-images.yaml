@@ -3,17 +3,17 @@ name: test-images-install
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["weekly-systempipe-docker-devel-builder"]
+    workflows: ["weekly-systempipe-docker-latest-builder"]
     types:
       - completed
   schedule:
-    - cron: '* */48 * * *'
+    - cron: '52 17 * * *'
 
 jobs:
   test-built-containers:
     strategy:
       matrix:
-        container-tag: [devel]
+        container-tag: [latest]
     runs-on: ubuntu-latest
     container: systempipe/systempipe_docker:${{ matrix.container-tag }}
 
