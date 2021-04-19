@@ -7,7 +7,7 @@ on:
     types:
       - completed
   schedule:
-    - cron: '52 17 * * *'
+    - cron: '* */48 * * *'
 
 jobs:
   test-built-containers:

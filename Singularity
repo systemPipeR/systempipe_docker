@@ -1,2 +1,2 @@
 Bootstrap: docker
-From: systempipe/systempipe_docker:devel
+From: systempipe/systempipe_docker:latest
