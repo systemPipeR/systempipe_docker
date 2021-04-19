@@ -57,7 +57,7 @@ This tutorial shows how to create, access, run, build a Docker container.
 7. [Commands](#commands)
 8. [Docker and GitHub Actions](#github)
 9. [Common Problems](#faq)
-10. [Singularity Container](singularity)
+10. [Singularity Container](#singularity)
 11. [Resources](#resources)
 
 * * *
