@@ -8,9 +8,9 @@ RUN Rscript --vanilla -e "options(repos = c(CRAN = 'https://cran.r-project.org')
 RUN Rscript -e 'BiocManager::install("systemPipeR/systemPipeTools")'
 RUN Rscript -e 'BiocManager::install("tgirke/systemPipeR")'
 
-WORKDIR /home/rstudio/SPRojects
+WORKDIR /home/rstudio/SPRojects/
 
-COPY --chown=rstudio:rstudio . /home/rstudio/SPRojects
+COPY --chown=rstudio:rstudio . /home/rstudio/SPRojects/
 
 # Metadata
 LABEL name="systempipe/systempipe_docker" \
