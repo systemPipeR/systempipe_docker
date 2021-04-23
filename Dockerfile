@@ -1,12 +1,12 @@
 # Docker inheritance
 FROM bioconductor/bioconductor_docker:devel
 
-## Install BiocStyle
-RUN R -e 'BiocManager::install("BiocStyle")'
+# Update Bioconductor packages from devel version
+RUN Rscript --vanilla -e "options(repos = c(CRAN = 'https://cran.r-project.org')); BiocManager::install(ask=FALSE)"
 
-# Install required Bioconductor package from devel version
-RUN R -e 'BiocManager::install("tgirke/systemPipeR")'
-RUN R -e 'BiocManager::install("tgirke/systemPipeRdata")'
+# Install required Bioconductor packages from devel version
+RUN Rscript -e 'BiocManager::install("systemPipeR/systemPipeTools")'
+RUN Rscript -e 'BiocManager::install("tgirke/systemPipeR")'
 
 WORKDIR /home/rstudio/SPRojects
 
