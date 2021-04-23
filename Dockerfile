@@ -6,6 +6,7 @@ RUN Rscript --vanilla -e "options(repos = c(CRAN = 'https://cran.r-project.org')
 
 # Install required Bioconductor packages from devel version
 RUN Rscript -e 'BiocManager::install("systemPipeR/systemPipeTools")'
+RUN Rscript -e 'BiocManager::install("systemPipeR/systemPipeShiny")'
 RUN Rscript -e 'BiocManager::install("tgirke/systemPipeR")'
 
 WORKDIR /home/rstudio/SPRojects/
