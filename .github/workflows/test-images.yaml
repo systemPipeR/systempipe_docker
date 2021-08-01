@@ -30,15 +30,20 @@ jobs:
           BiocManager::install('gert')
           require('gert')
         shell: Rscript {0}
-        # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-        # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: sh .scripts/weekly_build.sh
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+        
+        
+        # deploy needs rsync? Seems so.
+      - name: Install deploy dependencies
+        run: |
+          apt-get update
+          apt-get -y install rsync
+      
+      - uses: docker/build-push-action@v2
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+          # Use the environment variable on first few lines to set repo name--just centralizes changes
+          repository: ${{ env.repo-name }}
+          tag_with_ref: true
+          tag_with_sha: true
+          tags: latest
