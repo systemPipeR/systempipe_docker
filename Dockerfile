@@ -6,16 +6,20 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-#RUN apt-get update &&\ 
-#    wget https://github.com/systemPipeR/systempipe_docker/blob/master/tools/Trimmomatic-0.39.zip &&\
-#    unzip Trimmomatic-0.39.zip -d /opt/ &&\
-#    rm -rf Trimmomatic-0.39.zip &&\
-#    chmod +x /opt/Trimmomatic-0.39/trimmomatic-0.39.jar &&\
-#    echo "#!/bin/bash" >> /opt/Trimmomatic-0.39/trimmomatic &&\
-#    echo "exec java -jar /opt/Trimmomatic-0.39/trimmomatic-0.39.jar """"$""@"""" " >> /opt/Trimmomatic-0.39/trimmomatic &&\
-#    chmod +x /opt/Trimmomatic-0.39/trimmomatic
+WORKDIR /home/rstudio/SPRojects/
 
-#ENV PATH="${PATH}:/opt/Trimmomatic-0.39/"
+COPY --chown=rstudio:rstudio . /home/rstudio/SPRojects/
+
+RUN apt-get update &&\ 
+    cd tools &&\
+    unzip Trimmomatic-0.39.zip -d /opt/ &&\
+#    rm -rf Trimmomatic-0.39.zip &&\
+    chmod +x /opt/Trimmomatic-0.39/trimmomatic-0.39.jar &&\
+    echo "#!/bin/bash" >> /opt/Trimmomatic-0.39/trimmomatic &&\
+    echo "exec java -jar /opt/Trimmomatic-0.39/trimmomatic-0.39.jar """"$""@"""" " >> /opt/Trimmomatic-0.39/trimmomatic &&\
+    chmod +x /opt/Trimmomatic-0.39/trimmomatic
+
+ENV PATH="${PATH}:/opt/Trimmomatic-0.39/"
 
 # Update Bioconductor packages from devel version
 RUN Rscript --vanilla -e "options(repos = c(CRAN = 'https://cran.r-project.org')); BiocManager::install(ask=FALSE)"
@@ -24,10 +28,6 @@ RUN Rscript --vanilla -e "options(repos = c(CRAN = 'https://cran.r-project.org')
 RUN Rscript -e 'BiocManager::install("systemPipeR/systemPipeTools")'
 RUN Rscript -e 'BiocManager::install("systemPipeR/systemPipeShiny")'
 RUN Rscript -e 'BiocManager::install("tgirke/systemPipeR")'
-
-WORKDIR /home/rstudio/SPRojects/
-
-COPY --chown=rstudio:rstudio . /home/rstudio/SPRojects/
 
 # Metadata
 LABEL name="systempipe/systempipe_docker" \
