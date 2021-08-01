@@ -6,7 +6,8 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN wget https://github.com/systemPipeR/systempipe_docker/blob/master/tools/Trimmomatic-0.39.zip &&\
+RUN apt-get update &&\ 
+    wget https://github.com/systemPipeR/systempipe_docker/blob/master/tools/Trimmomatic-0.39.zip &&\
     unzip Trimmomatic-0.39.zip -d /opt/ &&\
     rm -rf Trimmomatic-0.39.zip &&\
     chmod +x /opt/Trimmomatic-0.39/trimmomatic-0.39.jar &&\
