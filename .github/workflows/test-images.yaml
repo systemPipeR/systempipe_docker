@@ -30,3 +30,15 @@ jobs:
           BiocManager::install('gert')
           require('gert')
         shell: Rscript {0}
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+    # Runs a single command using the runners shell
+    - name: Run a one-line script
+      run: sh .scripts/weekly_build.sh
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
