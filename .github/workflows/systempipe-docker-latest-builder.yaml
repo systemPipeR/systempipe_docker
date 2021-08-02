@@ -27,6 +27,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: latest
+          tags: systempipe/systempipe_docker:latest
           secrets: |
             GIT_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }}
