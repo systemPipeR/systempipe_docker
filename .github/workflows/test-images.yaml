@@ -6,8 +6,8 @@ on:
     workflows: ["weekly-systempipe-docker-latest-builder"]
     types:
       - completed
-  schedule:
-    - cron: '* */48 * * *'
+#  schedule:
+#    - cron: '* */48 * * *'
 
 jobs:
   test-built-containers:
