@@ -2,7 +2,7 @@
 FROM bioconductor/bioconductor_docker:devel
 
 RUN apt-get update && \
-    apt-get install -y hisat2 bowtie bowtie2 bwa samtools vim && \
+    apt-get install -y hisat2 bowtie bowtie2 bwa samtools vim fastqc trim-galore && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
