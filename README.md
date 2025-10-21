@@ -2,7 +2,7 @@
 
 > Guidelines from [bioconductor_docker](https://github.com/Bioconductor/bioconductor_docker).
 
-# Running the `systemPipeR/systemPipeShiny` with Docker 
+# Running the `systemPipeR` with Docker 
 
 ## Get a copy of the public docker image
 
