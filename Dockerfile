@@ -28,6 +28,7 @@ RUN Rscript --vanilla -e "options(repos = c(CRAN = 'https://cran.r-project.org')
 RUN Rscript -e 'BiocManager::install("systemPipeR/systemPipeTools")'
 RUN Rscript -e 'BiocManager::install("systemPipeR/systemPipeShiny")'
 RUN Rscript -e 'BiocManager::install("tgirke/systemPipeR")'
+RUN Rscript -e 'BiocManager::install("tgirke/systemPipeRdata")'
 
 # Metadata
 LABEL name="systempipe/systempipe_docker" \
